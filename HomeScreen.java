@@ -10,6 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class HomeScreen {
+	//Boolean to track where player is on the screen 
+ boolean mainScreen = true; 
+	
+	
+	//Character Variables 
+	int amountOfMoney ; 
 
 	// Frame + Container 
 	JFrame window;
@@ -18,10 +24,12 @@ public class HomeScreen {
 	// Panels
 	JPanel titleBox;
 	JPanel startBox;
+	JPanel moneyBox ; 
 
 	// Labels
 	JLabel startText;
 	JLabel titleText;
+	JLabel moneyText ; 
 
 	// Buttons 
 	JButton startButton ; 
@@ -31,13 +39,13 @@ public class HomeScreen {
 	Font buttonFont = new Font("Time New Roman", Font.BOLD, 15) ;
 	
 	TitleScreenHandler tsHandler = new TitleScreenHandler() ; 
+	TitleScreenHandler grindHandler = new TitleScreenHandler() ; 
 
 	public static void main(String[] args) {
 		/*
 		 * THINGS TO FIX Center the title
 		 */
-
-		new HomeScreen();
+			new HomeScreen();
 	}
 
 	// The constructor
@@ -101,15 +109,56 @@ public class HomeScreen {
 	}
 	
 	public void createGameScreen() {
-		startBox.setVisible(false);
+		
+		
+	
+		//clears the screen 
 		titleBox.setVisible(false);
+		startBox.setVisible(false);
+		window.getContentPane().setBackground(Color.gray);
+		
+		//Money Counter
+				moneyBox = new JPanel();
+				moneyBox.setBounds(50, 50, 485, 100); // Sets the bounds of the Title
+				moneyBox.setBackground(Color.green);
+				
+				moneyText = new JLabel("$ " + amountOfMoney); // Actual text of the JLabel
+				moneyText.setForeground(Color.yellow); // color of the text
+				moneyText.setFont(titleFont);
+				
+		
+		//Grind Button 
+		JButton workButton = new JButton("GRIND") ;
+		JPanel workBox = new JPanel() ; 
+		workBox.setBounds(50, 310, 485, 100); // Sets the bounds of the Title
+		workBox.setBackground(Color.gray);
+		workBox.setFont(buttonFont) ; 
+		
+		
+		
+		workButton.setBackground(Color.black);
+		workButton.setForeground(Color.white);
+		workButton.setFont(buttonFont) ; 
+		workButton.addActionListener(tsHandler);
+		
+	
+		
+		// Adding text to the panels
+		workBox.add(workButton) ;
+		moneyBox.add(moneyText) ; 
+		
+		// Adding panels to the container
+		container.add(workBox);
+		container.add(moneyBox) ; 
 		
 	}
 	
 	public class TitleScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			createGameScreen() ; 
+			amountOfMoney++ ; 
+				createGameScreen() ; 
+			}
 		}
 	}
 
-}
+
