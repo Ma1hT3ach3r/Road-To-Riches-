@@ -1,6 +1,6 @@
 
 # Road-To-Riches-
-A game that teaches the user what the current educational system fails teach. Financial Education. 
+A game that teaches the user what the current educational system fails to teach. Financial Education. 
 
 # The Start  
 Just has a simple GUI, nothing special yet 
